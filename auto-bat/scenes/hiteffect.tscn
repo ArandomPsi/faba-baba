@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://6w8hw73yq374"]
+
+[ext_resource type="Texture2D" uid="uid://dg8o5w11ywtsf" path="res://assets/vfx/iaislash.svg" id="1_dn5ww"]
+[ext_resource type="Script" uid="uid://b10ipfm4uo3nq" path="res://scripts/par.gd" id="2_oyglf"]
+
+[sub_resource type="Gradient" id="Gradient_oyglf"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cffip"]
+gradient = SubResource("Gradient_oyglf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oyglf"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+color = Color(0.85, 0.493, 0.49895, 1)
+color_ramp = SubResource("GradientTexture1D_cffip")
+
+[node name="hiteffect" type="GPUParticles2D"]
+emitting = false
+amount = 3
+texture = ExtResource("1_dn5ww")
+lifetime = 0.15
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_oyglf")
+script = ExtResource("2_oyglf")

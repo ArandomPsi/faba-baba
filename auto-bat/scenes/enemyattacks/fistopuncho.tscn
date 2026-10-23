@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnvvgpv7cj1f2"]
+
+[ext_resource type="Script" uid="uid://c33j2su3es5hb" path="res://scripts/enemyattacks/fistopuncho.gd" id="1_j8yca"]
+
+[node name="fistopuncho" type="Node2D"]
+script = ExtResource("1_j8yca")
+basecooldown = 2.0
+damage = 8
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

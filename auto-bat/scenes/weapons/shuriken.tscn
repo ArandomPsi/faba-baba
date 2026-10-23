@@ -1,11 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq53fl1gf786j"]
+[gd_scene load_steps=2 format=3 uid="uid://brag2c51um1hk"]
 
 [ext_resource type="Script" uid="uid://dul7k88hksf28" path="res://scripts/weapons/shuriken.gd" id="1_jufot"]
 
 [node name="shuriken" type="Node2D"]
 script = ExtResource("1_jufot")
 basecooldown = 2.5
-damage = 10
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

@@ -5,3 +5,6 @@ extends Sprite2D
 
 func _process(delta: float) -> void:
 	pass
+
+func damage(amount : int):
+	get_parent().playerhp -= amount

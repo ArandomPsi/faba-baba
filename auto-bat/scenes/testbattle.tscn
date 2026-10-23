@@ -1,15 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://b52wqjim0ddep"]
+[gd_scene load_steps=14 format=3 uid="uid://b52wqjim0ddep"]
 
 [ext_resource type="Texture2D" uid="uid://vbfkh1xxwjf" path="res://assets/theguybase-3.svg" id="1_xju78"]
 [ext_resource type="Script" uid="uid://owq3tmphrxxh" path="res://scripts/battle.gd" id="1_y8w5l"]
 [ext_resource type="Texture2D" uid="uid://cgl0ew8801pdu" path="res://assets/bigbooiiiii.svg" id="2_e4ha6"]
 [ext_resource type="Script" uid="uid://blsbjny8bd5h3" path="res://scripts/player.gd" id="3_ys4bj"]
 [ext_resource type="PackedScene" uid="uid://behyh2vj7hoko" path="res://scenes/weapons/dagger.tscn" id="4_3bqys"]
-[ext_resource type="PackedScene" uid="uid://bq53fl1gf786j" path="res://scenes/weapons/shuriken.tscn" id="5_i0l17"]
+[ext_resource type="PackedScene" uid="uid://brag2c51um1hk" path="res://scenes/weapons/shuriken.tscn" id="5_i0l17"]
 [ext_resource type="Script" uid="uid://7rmshsu5bs7i" path="res://scripts/enemy.gd" id="6_dh8fg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dh8fg"]
-size = Vector2(62, 272)
+[ext_resource type="PackedScene" uid="uid://bnvvgpv7cj1f2" path="res://scenes/enemyattacks/fistopuncho.tscn" id="8_2s6dt"]
+[ext_resource type="Shader" uid="uid://duhsptdwbqwk1" path="res://assets/vfx/pixel.gdshader" id="8_k0suh"]
+[ext_resource type="Script" uid="uid://dsueujytyeih7" path="res://scripts/pixelstuff.gd" id="9_rsfs2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dh8fg"]
 bg_color = Color(0, 0, 0, 1)
@@ -21,8 +21,26 @@ expand_margin_bottom = 4.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0l17"]
 bg_color = Color(1, 0, 0, 1)
 
-[node name="testbattle" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rsfs2"]
+shader = ExtResource("8_k0suh")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 2.0
+shader_parameter/enable_posterize = false
+shader_parameter/color_levels = 12.0
+shader_parameter/dither_strength = 0.75
+shader_parameter/chrom_aberration = 0.0
+shader_parameter/vignette_strength = 0.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(1, 1, 1)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[node name="testbattle" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_y8w5l")
+player = NodePath("player")
 
 [node name="player" type="Sprite2D" parent="." node_paths=PackedStringArray("enemy")]
 position = Vector2(146, 494)
@@ -40,13 +58,7 @@ position = Vector2(908, 428)
 texture = ExtResource("2_e4ha6")
 script = ExtResource("6_dh8fg")
 
-[node name="Area2D" type="Area2D" parent="testenemy"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="testenemy/Area2D"]
-position = Vector2(3, -3)
-shape = SubResource("RectangleShape2D_dh8fg")
+[node name="fistopuncho" parent="testenemy" instance=ExtResource("8_2s6dt")]
 
 [node name="playerhp" type="ProgressBar" parent="."]
 offset_left = 20.0
@@ -66,3 +78,16 @@ theme_override_styles/background = SubResource("StyleBoxFlat_dh8fg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_i0l17")
 fill_mode = 1
 show_percentage = false
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="pixelstuff" type="ColorRect" parent="hud"]
+visible = false
+material = SubResource("ShaderMaterial_rsfs2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_rsfs2")
