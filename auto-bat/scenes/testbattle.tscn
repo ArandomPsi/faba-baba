@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b52wqjim0ddep"]
+[gd_scene load_steps=11 format=3 uid="uid://b52wqjim0ddep"]
 
 [ext_resource type="Texture2D" uid="uid://vbfkh1xxwjf" path="res://assets/theguybase-3.svg" id="1_xju78"]
 [ext_resource type="Script" uid="uid://owq3tmphrxxh" path="res://scripts/battle.gd" id="1_y8w5l"]
 [ext_resource type="Texture2D" uid="uid://cgl0ew8801pdu" path="res://assets/bigbooiiiii.svg" id="2_e4ha6"]
 [ext_resource type="Script" uid="uid://blsbjny8bd5h3" path="res://scripts/player.gd" id="3_ys4bj"]
 [ext_resource type="PackedScene" uid="uid://behyh2vj7hoko" path="res://scenes/weapons/dagger.tscn" id="4_3bqys"]
+[ext_resource type="PackedScene" uid="uid://bq53fl1gf786j" path="res://scenes/weapons/shuriken.tscn" id="5_i0l17"]
 [ext_resource type="Script" uid="uid://7rmshsu5bs7i" path="res://scripts/enemy.gd" id="6_dh8fg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dh8fg"]
+size = Vector2(62, 272)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dh8fg"]
 bg_color = Color(0, 0, 0, 1)
@@ -29,10 +33,20 @@ enemy = NodePath("../testenemy")
 
 [node name="dagger" parent="player" instance=ExtResource("4_3bqys")]
 
+[node name="shuriken" parent="player" instance=ExtResource("5_i0l17")]
+
 [node name="testenemy" type="Sprite2D" parent="."]
 position = Vector2(908, 428)
 texture = ExtResource("2_e4ha6")
 script = ExtResource("6_dh8fg")
+
+[node name="Area2D" type="Area2D" parent="testenemy"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="testenemy/Area2D"]
+position = Vector2(3, -3)
+shape = SubResource("RectangleShape2D_dh8fg")
 
 [node name="playerhp" type="ProgressBar" parent="."]
 offset_left = 20.0

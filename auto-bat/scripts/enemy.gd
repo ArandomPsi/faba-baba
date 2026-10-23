@@ -5,10 +5,13 @@ var ogpos : Vector2 #just in case
 func _ready() -> void:
 	ogpos = position
 
+func _process(delta: float) -> void:
+	self_modulate = lerp(self_modulate, Color.WHITE, 7 * delta)
 
 func damage(amount):
 	get_parent().enemyhp -= amount
 	smallshake()
+	self_modulate = Color.RED
 
 
 func smallshake():
