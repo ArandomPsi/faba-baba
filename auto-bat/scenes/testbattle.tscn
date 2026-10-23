@@ -7,11 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://behyh2vj7hoko" path="res://scenes/weapons/dagger.tscn" id="4_3bqys"]
 [ext_resource type="PackedScene" uid="uid://brag2c51um1hk" path="res://scenes/weapons/shuriken.tscn" id="5_i0l17"]
 [ext_resource type="Script" uid="uid://7rmshsu5bs7i" path="res://scripts/enemy.gd" id="6_dh8fg"]
-[ext_resource type="PackedScene" uid="uid://dyum0w000vmm3" path="res://scenes/weapons/hammer.tscn" id="6_jt6bt"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/hammer.tscn" id="6_jt6bt"]
 [ext_resource type="PackedScene" uid="uid://bnvvgpv7cj1f2" path="res://scenes/enemyattacks/fistopuncho.tscn" id="8_2s6dt"]
-[ext_resource type="Shader" path="res://assets/vfx/pixel.gdshader" id="8_k0suh"]
+[ext_resource type="Shader" uid="uid://duhsptdwbqwk1" path="res://assets/vfx/pixel.gdshader" id="8_k0suh"]
 [ext_resource type="Texture2D" uid="uid://buuubnvey3x04" path="res://assets/hpbarempty.svg" id="9_l64my"]
-[ext_resource type="Script" path="res://scripts/pixelstuff.gd" id="9_rsfs2"]
+[ext_resource type="Script" uid="uid://dsueujytyeih7" path="res://scripts/pixelstuff.gd" id="9_rsfs2"]
 [ext_resource type="Texture2D" uid="uid://ba4r04nyi3ak7" path="res://assets/hpbarfull.svg" id="10_jt6bt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsfs2"]
@@ -56,23 +56,23 @@ script = ExtResource("6_dh8fg")
 [node name="fistopuncho" parent="testenemy" instance=ExtResource("8_2s6dt")]
 
 [node name="playerhp" type="TextureProgressBar" parent="."]
-offset_left = 20.0
-offset_top = 24.0
-offset_right = 386.0
-offset_bottom = 51.0
-scale = Vector2(0.765, 0.765)
+offset_top = 21.0
+offset_right = 433.0
+offset_bottom = 61.0
 step = 0.1
 value = 0.7
+nine_patch_stretch = true
 texture_under = ExtResource("9_l64my")
 texture_progress = ExtResource("10_jt6bt")
 
 [node name="enemyhp" type="TextureProgressBar" parent="."]
-offset_left = 1132.0
-offset_top = 24.0
-offset_right = 1824.0
-offset_bottom = 88.0
-scale = Vector2(-0.765, 0.765)
+offset_left = 1152.0
+offset_top = 22.0
+offset_right = 1585.0
+offset_bottom = 62.0
+scale = Vector2(-1, 1)
 step = 0.1
+nine_patch_stretch = true
 texture_under = ExtResource("9_l64my")
 texture_progress = ExtResource("10_jt6bt")
 
