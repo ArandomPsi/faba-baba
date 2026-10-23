@@ -1,3 +1,54 @@
-[gd_scene format=3 uid="uid://b52wqjim0ddep"]
+[gd_scene load_steps=9 format=3 uid="uid://b52wqjim0ddep"]
+
+[ext_resource type="Texture2D" uid="uid://vbfkh1xxwjf" path="res://assets/theguybase-3.svg" id="1_xju78"]
+[ext_resource type="Script" uid="uid://owq3tmphrxxh" path="res://scripts/battle.gd" id="1_y8w5l"]
+[ext_resource type="Texture2D" uid="uid://cgl0ew8801pdu" path="res://assets/bigbooiiiii.svg" id="2_e4ha6"]
+[ext_resource type="Script" uid="uid://blsbjny8bd5h3" path="res://scripts/player.gd" id="3_ys4bj"]
+[ext_resource type="PackedScene" uid="uid://behyh2vj7hoko" path="res://scenes/weapons/dagger.tscn" id="4_3bqys"]
+[ext_resource type="Script" uid="uid://7rmshsu5bs7i" path="res://scripts/enemy.gd" id="6_dh8fg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dh8fg"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0l17"]
+bg_color = Color(1, 0, 0, 1)
 
 [node name="testbattle" type="Node2D"]
+script = ExtResource("1_y8w5l")
+
+[node name="player" type="Sprite2D" parent="." node_paths=PackedStringArray("enemy")]
+position = Vector2(146, 494)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_xju78")
+script = ExtResource("3_ys4bj")
+enemy = NodePath("../testenemy")
+
+[node name="dagger" parent="player" instance=ExtResource("4_3bqys")]
+
+[node name="testenemy" type="Sprite2D" parent="."]
+position = Vector2(908, 428)
+texture = ExtResource("2_e4ha6")
+script = ExtResource("6_dh8fg")
+
+[node name="playerhp" type="ProgressBar" parent="."]
+offset_left = 20.0
+offset_top = 24.0
+offset_right = 386.0
+offset_bottom = 51.0
+theme_override_styles/background = SubResource("StyleBoxFlat_dh8fg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i0l17")
+show_percentage = false
+
+[node name="enemyhp" type="ProgressBar" parent="."]
+offset_left = 766.0
+offset_top = 24.0
+offset_right = 1132.0
+offset_bottom = 51.0
+theme_override_styles/background = SubResource("StyleBoxFlat_dh8fg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i0l17")
+fill_mode = 1
+show_percentage = false
