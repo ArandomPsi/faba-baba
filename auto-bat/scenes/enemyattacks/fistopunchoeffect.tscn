@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cp3a2k1ps41nd" path="res://assets/vfx/2effect4.svg" id="1_mpqsl"]
 [ext_resource type="Texture2D" uid="uid://7cy1ganb0n48" path="res://assets/vfx/2effect2.svg" id="2_ij0au"]
-[ext_resource type="Script" uid="uid://b10ipfm4uo3nq" path="res://scripts/par.gd" id="2_sicdc"]
+[ext_resource type="Script" path="res://scripts/par.gd" id="2_sicdc"]
 [ext_resource type="Texture2D" uid="uid://b5j3ag4653fl" path="res://assets/vfx/2fist2.svg" id="4_ma4en"]
 
 [sub_resource type="Gradient" id="Gradient_ij0au"]

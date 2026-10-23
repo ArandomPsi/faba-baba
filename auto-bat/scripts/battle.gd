@@ -3,6 +3,8 @@ var playerhp : int = 100
 var enemyhp : int = 100
 
 @export var player : Node2D
+@onready var enemy: Sprite2D = $testenemy
+
 
 
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b52wqjim0ddep"]
+[gd_scene load_steps=15 format=3 uid="uid://b52wqjim0ddep"]
 
 [ext_resource type="Texture2D" uid="uid://vbfkh1xxwjf" path="res://assets/theguybase-3.svg" id="1_xju78"]
 [ext_resource type="Script" uid="uid://owq3tmphrxxh" path="res://scripts/battle.gd" id="1_y8w5l"]
@@ -7,19 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://behyh2vj7hoko" path="res://scenes/weapons/dagger.tscn" id="4_3bqys"]
 [ext_resource type="PackedScene" uid="uid://brag2c51um1hk" path="res://scenes/weapons/shuriken.tscn" id="5_i0l17"]
 [ext_resource type="Script" uid="uid://7rmshsu5bs7i" path="res://scripts/enemy.gd" id="6_dh8fg"]
+[ext_resource type="PackedScene" uid="uid://dyum0w000vmm3" path="res://scenes/weapons/hammer.tscn" id="6_jt6bt"]
 [ext_resource type="PackedScene" uid="uid://bnvvgpv7cj1f2" path="res://scenes/enemyattacks/fistopuncho.tscn" id="8_2s6dt"]
-[ext_resource type="Shader" uid="uid://duhsptdwbqwk1" path="res://assets/vfx/pixel.gdshader" id="8_k0suh"]
-[ext_resource type="Script" uid="uid://dsueujytyeih7" path="res://scripts/pixelstuff.gd" id="9_rsfs2"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dh8fg"]
-bg_color = Color(0, 0, 0, 1)
-expand_margin_left = 4.0
-expand_margin_top = 4.0
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0l17"]
-bg_color = Color(1, 0, 0, 1)
+[ext_resource type="Shader" path="res://assets/vfx/pixel.gdshader" id="8_k0suh"]
+[ext_resource type="Texture2D" uid="uid://buuubnvey3x04" path="res://assets/hpbarempty.svg" id="9_l64my"]
+[ext_resource type="Script" path="res://scripts/pixelstuff.gd" id="9_rsfs2"]
+[ext_resource type="Texture2D" uid="uid://ba4r04nyi3ak7" path="res://assets/hpbarfull.svg" id="10_jt6bt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rsfs2"]
 shader = ExtResource("8_k0suh")
@@ -53,6 +46,8 @@ enemy = NodePath("../testenemy")
 
 [node name="shuriken" parent="player" instance=ExtResource("5_i0l17")]
 
+[node name="hammer" parent="player" instance=ExtResource("6_jt6bt")]
+
 [node name="testenemy" type="Sprite2D" parent="."]
 position = Vector2(908, 428)
 texture = ExtResource("2_e4ha6")
@@ -60,24 +55,26 @@ script = ExtResource("6_dh8fg")
 
 [node name="fistopuncho" parent="testenemy" instance=ExtResource("8_2s6dt")]
 
-[node name="playerhp" type="ProgressBar" parent="."]
+[node name="playerhp" type="TextureProgressBar" parent="."]
 offset_left = 20.0
 offset_top = 24.0
 offset_right = 386.0
 offset_bottom = 51.0
-theme_override_styles/background = SubResource("StyleBoxFlat_dh8fg")
-theme_override_styles/fill = SubResource("StyleBoxFlat_i0l17")
-show_percentage = false
+scale = Vector2(0.765, 0.765)
+step = 0.1
+value = 0.7
+texture_under = ExtResource("9_l64my")
+texture_progress = ExtResource("10_jt6bt")
 
-[node name="enemyhp" type="ProgressBar" parent="."]
-offset_left = 766.0
+[node name="enemyhp" type="TextureProgressBar" parent="."]
+offset_left = 1132.0
 offset_top = 24.0
-offset_right = 1132.0
-offset_bottom = 51.0
-theme_override_styles/background = SubResource("StyleBoxFlat_dh8fg")
-theme_override_styles/fill = SubResource("StyleBoxFlat_i0l17")
-fill_mode = 1
-show_percentage = false
+offset_right = 1824.0
+offset_bottom = 88.0
+scale = Vector2(-0.765, 0.765)
+step = 0.1
+texture_under = ExtResource("9_l64my")
+texture_progress = ExtResource("10_jt6bt")
 
 [node name="hud" type="CanvasLayer" parent="."]
 
