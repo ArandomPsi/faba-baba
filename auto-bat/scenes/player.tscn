@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://dccbuhp4n7bku"]
+
+[ext_resource type="Script" uid="uid://bcev3u2iioldd" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://6gofakpamjbc" path="res://assets/spaceship.svg" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://d0kr8nge20pd" path="res://scripts/cam.gd" id="3_qhqgy"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qhqgy"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_g2els"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qhqgy"]
+gradient = SubResource("Gradient_g2els")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_dqkch"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qlg0r"]
+gradient = SubResource("Gradient_dqkch")
+
+[sub_resource type="Curve" id="Curve_dqkch"]
+_data = [Vector2(0, 0.272179), 0.0, 0.0, 0, 0, Vector2(0.185374, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.559575), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qlg0r"]
+curve = SubResource("Curve_dqkch")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tuyoq"]
+particle_flag_disable_z = true
+spread = 0.0
+initial_velocity_min = 243.9
+initial_velocity_max = 243.9
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_qlg0r")
+color_ramp = SubResource("GradientTexture1D_qlg0r")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_g2els")
+
+[node name="pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="pivot"]
+modulate = Color(0, 0.85, 1, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_qhqgy")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="pivot/Sprite2D"]
+material = SubResource("CanvasItemMaterial_qhqgy")
+scale = Vector2(2, 2)
+amount = 20
+texture = SubResource("GradientTexture2D_qhqgy")
+lifetime = 0.5
+speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_tuyoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -20
+limit_top = -20
+limit_right = 1172
+limit_bottom = 668
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+script = ExtResource("3_qhqgy")

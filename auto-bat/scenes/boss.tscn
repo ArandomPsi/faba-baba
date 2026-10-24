@@ -1,0 +1,377 @@
+[gd_scene load_steps=32 format=3 uid="uid://d0qcg2ghe50w1"]
+
+[ext_resource type="Texture2D" uid="uid://dqfuh5bbn2hx4" path="res://assets/body-3.svg" id="1_jncid"]
+[ext_resource type="Script" uid="uid://cgchg7ws4vqfw" path="res://scripts/boss.gd" id="1_r3bxh"]
+[ext_resource type="Texture2D" uid="uid://cd1t51reaee7a" path="res://assets/head-3.svg" id="2_qnbj4"]
+[ext_resource type="Texture2D" uid="uid://wbanfgin5pko" path="res://assets/vfx/light-2.svg" id="3_qnbj4"]
+[ext_resource type="Texture2D" uid="uid://wt7o2u3ujt8x" path="res://assets/arm.svg" id="3_r3bxh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r3bxh"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_wqpjq"]
+offsets = PackedFloat32Array(0, 0.996255)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2cdgk"]
+gradient = SubResource("Gradient_wqpjq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qsl3t"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 20, 1)
+angle_min = -90.0
+angle_max = -90.0
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_2cdgk")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wqpjq"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_6fk1w"]
+offsets = PackedFloat32Array(0.0716846, 0.34767)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2cdgk"]
+gradient = SubResource("Gradient_6fk1w")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_qsl3t"]
+offsets = PackedFloat32Array(0.00749064, 0.127341, 0.529963, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2avx2"]
+gradient = SubResource("Gradient_qsl3t")
+
+[sub_resource type="Curve" id="Curve_5f346"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0onds"]
+curve = SubResource("Curve_5f346")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lfs1x"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 300.0
+radial_velocity_min = -1000.0
+radial_velocity_max = -320.55
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_0onds")
+color_ramp = SubResource("GradientTexture1D_2avx2")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2cdgk"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_2avx2"]
+offsets = PackedFloat32Array(0, 0.235955, 0.994382)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5f346"]
+gradient = SubResource("Gradient_2avx2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0onds"]
+particle_flag_disable_z = true
+direction = Vector3(0, -2, 0)
+spread = 0.0
+initial_velocity_min = 45.29
+initial_velocity_max = 470.38
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_5f346")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qsl3t"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_5f346"]
+offsets = PackedFloat32Array(0.826367, 0.996904)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0onds"]
+gradient = SubResource("Gradient_5f346")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqpjq"]
+size = Vector2(82, 496.4)
+
+[sub_resource type="Animation" id="Animation_r3bxh"]
+resource_name = "attack1"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack1"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_wqpjq"]
+resource_name = "attack2"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.533333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack2"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/Sprite2D:rotation")
+tracks/1/interp = 3
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3, 0.5, 0.662247),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.209293, 1.40422, 2.46588, 4.25239, 0.209293]
+}
+
+[sub_resource type="Animation" id="Animation_2cdgk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body/Sprite2D:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.209293]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/head/charge:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/head/godzillathingy:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qsl3t"]
+resource_name = "godzillabeam"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.8],
+"method": &"changeheadrotaspeed"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/Sprite2D:rotation")
+tracks/1/interp = 3
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.766667, 0.9, 1.03333, 1.5, 1.89981),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.209293, -0.687582, 5.5956, 5.5956, 7.45396, 7.45396, 0.209293]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/head/charge:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("body/head/godzillathingy:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.56667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2avx2"]
+resource_name = "hollowpurple"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.166667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hollowpurple"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body/Sprite2D:rotation")
+tracks/1/interp = 3
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.466667, 1.66667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.209293, 1.40422, 1.40422, 0.209293, 0.209293]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body/head/charge:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.93333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqpjq"]
+_data = {
+&"RESET": SubResource("Animation_2cdgk"),
+&"attack1": SubResource("Animation_r3bxh"),
+&"attack2": SubResource("Animation_wqpjq"),
+&"godzillabeam": SubResource("Animation_qsl3t"),
+&"hollowpurple": SubResource("Animation_2avx2")
+}
+
+[node name="boss" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_r3bxh")
+
+[node name="body" type="Sprite2D" parent="."]
+modulate = Color(0.76, 0, 0.418, 1)
+position = Vector2(-62, 232)
+rotation = -0.0979007
+texture = ExtResource("1_jncid")
+
+[node name="head" type="Sprite2D" parent="body"]
+position = Vector2(152.223, -291.517)
+rotation = 0.141509
+texture = ExtResource("2_qnbj4")
+
+[node name="godzillathingy" type="GPUParticles2D" parent="body/head"]
+material = SubResource("CanvasItemMaterial_r3bxh")
+position = Vector2(87, 25)
+scale = Vector2(5, 1)
+emitting = false
+amount = 30
+texture = ExtResource("3_qnbj4")
+lifetime = 0.2
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_qsl3t")
+
+[node name="charge" type="GPUParticles2D" parent="body/head"]
+material = SubResource("CanvasItemMaterial_wqpjq")
+position = Vector2(78.191, 25.6157)
+rotation = -0.0436084
+texture = SubResource("GradientTexture2D_2cdgk")
+lifetime = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_lfs1x")
+
+[node name="eye1" type="Node2D" parent="body/head"]
+visible = false
+position = Vector2(8.99144, -0.392351)
+
+[node name="eye" type="GPUParticles2D" parent="body/head/eye1"]
+material = SubResource("CanvasItemMaterial_2cdgk")
+position = Vector2(-13.6016, -36.4417)
+rotation = -1.58615
+scale = Vector2(0.18352, 0.429854)
+texture = ExtResource("3_qnbj4")
+lifetime = 0.2
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_0onds")
+
+[node name="eye2" type="GPUParticles2D" parent="body/head/eye1"]
+material = SubResource("CanvasItemMaterial_2cdgk")
+position = Vector2(-23.5921, -36.0057)
+rotation = -0.0806343
+scale = Vector2(0.18352, 0.429854)
+texture = ExtResource("3_qnbj4")
+lifetime = 0.2
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_0onds")
+
+[node name="Sprite2D" type="Sprite2D" parent="body/head/eye1"]
+material = SubResource("CanvasItemMaterial_qsl3t")
+position = Vector2(-22.6802, -38.0474)
+scale = Vector2(0.628762, 0.91815)
+texture = SubResource("GradientTexture2D_0onds")
+
+[node name="Sprite2D" type="Sprite2D" parent="body"]
+position = Vector2(52.1331, -60.1925)
+rotation = 0.209293
+texture = ExtResource("3_r3bxh")
+offset = Vector2(150, 0)
+region_enabled = true
+region_rect = Rect2(156, 0, 276, 172)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.99768, 109.289)
+rotation = 0.179278
+shape = SubResource("RectangleShape2D_wqpjq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wqpjq")
+}

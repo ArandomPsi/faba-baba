@@ -1,0 +1,112 @@
+[gd_scene load_steps=13 format=3 uid="uid://3eg18hoap3vu"]
+
+[ext_resource type="PackedScene" uid="uid://d0qcg2ghe50w1" path="res://scenes/boss.tscn" id="1_kwcxs"]
+[ext_resource type="Shader" uid="uid://cgfautw2yuukk" path="res://assets/vfx/motionblur.gdshader" id="2_5wgtu"]
+[ext_resource type="Script" uid="uid://bnefweim82gb0" path="res://assets/vfx/motionblur.gd" id="3_efggw"]
+[ext_resource type="PackedScene" uid="uid://dccbuhp4n7bku" path="res://scenes/player.tscn" id="4_efggw"]
+
+[sub_resource type="Gradient" id="Gradient_6fk1w"]
+offsets = PackedFloat32Array(0.0716846, 0.34767)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s36se"]
+gradient = SubResource("Gradient_6fk1w")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_efggw"]
+offsets = PackedFloat32Array(0, 0.831461, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g8l4j"]
+gradient = SubResource("Gradient_efggw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6fk1w"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 350, 1)
+spread = 0.0
+initial_velocity_min = 637.63
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.4
+color = Color(0, 0.683333, 1, 1)
+color_ramp = SubResource("GradientTexture1D_g8l4j")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwcxs"]
+size = Vector2(1185, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g8l4j"]
+shader = ExtResource("2_5wgtu")
+shader_parameter/alpha = 0.595
+shader_parameter/blur = 0.0
+
+[sub_resource type="Environment" id="Environment_efggw"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 2.81
+glow_levels/7 = 0.83
+glow_bloom = 0.19
+glow_blend_mode = 1
+
+[node name="testmap" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -5
+offset_left = -845.0
+offset_top = -275.0
+offset_right = 2034.0
+offset_bottom = 984.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="GPUParticles2D" parent="."]
+z_index = -5
+position = Vector2(-87, 306)
+amount = 50
+texture = SubResource("GradientTexture2D_s36se")
+lifetime = 1.5
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
+process_material = SubResource("ParticleProcessMaterial_6fk1w")
+
+[node name="boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_kwcxs")]
+position = Vector2(182, 297)
+target = NodePath("../player")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(582.5, 0)
+shape = SubResource("RectangleShape2D_kwcxs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(582.5, 650)
+shape = SubResource("RectangleShape2D_kwcxs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1162, 300)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_kwcxs")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-5, 300)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_kwcxs")
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="motionblur" type="ColorRect" parent="hud"]
+visible = false
+material = SubResource("ShaderMaterial_g8l4j")
+offset_right = 1195.0
+offset_bottom = 680.0
+mouse_filter = 2
+script = ExtResource("3_efggw")
+
+[node name="player" parent="." instance=ExtResource("4_efggw")]
+position = Vector2(851, 344)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_efggw")
