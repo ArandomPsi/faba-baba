@@ -1,0 +1,231 @@
+[gd_scene load_steps=27 format=3 uid="uid://bbifm7ieaxq0t"]
+
+[ext_resource type="Texture2D" uid="uid://dpwpwh0568vci" path="res://assets/vfx/back-2.svg" id="1_4ignj"]
+[ext_resource type="Script" uid="uid://dfinawce37lsu" path="res://scripts/title.gd" id="1_4rr2b"]
+[ext_resource type="Shader" uid="uid://duhsptdwbqwk1" path="res://assets/vfx/pixel.gdshader" id="2_pyl7j"]
+[ext_resource type="Shader" uid="uid://cgfautw2yuukk" path="res://assets/vfx/motionblur.gdshader" id="3_b3w7a"]
+[ext_resource type="Script" uid="uid://bnefweim82gb0" path="res://assets/vfx/motionblur.gd" id="4_4rr2b"]
+[ext_resource type="Texture2D" uid="uid://6gofakpamjbc" path="res://assets/spaceship.svg" id="5_b3w7a"]
+[ext_resource type="FontFile" uid="uid://cnoopnyav4dsv" path="res://assets/vfx/Aquire-BW0ox.otf" id="7_yql1r"]
+[ext_resource type="Script" uid="uid://b7iqxw53xbi4" path="res://scripts/button.gd" id="8_ia1n6"]
+
+[sub_resource type="Gradient" id="Gradient_6fk1w"]
+offsets = PackedFloat32Array(0.0716846, 0.34767)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wosw1"]
+gradient = SubResource("Gradient_6fk1w")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_yql1r"]
+offsets = PackedFloat32Array(0, 0.831461, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ia1n6"]
+gradient = SubResource("Gradient_yql1r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hiwto"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 350, 1)
+spread = 0.0
+initial_velocity_min = 637.63
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.6
+color = Color(0, 0.683333, 1, 1)
+color_ramp = SubResource("GradientTexture1D_ia1n6")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4rr2b"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_g2els"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yql1r"]
+gradient = SubResource("Gradient_g2els")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_ia1n6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qlg0r"]
+gradient = SubResource("Gradient_ia1n6")
+
+[sub_resource type="Curve" id="Curve_hiwto"]
+_data = [Vector2(0, 0.272179), 0.0, 0.0, 0, 0, Vector2(0.0867347, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.559575), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qlg0r"]
+curve = SubResource("Curve_hiwto")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w65of"]
+particle_flag_disable_z = true
+spread = 0.0
+initial_velocity_min = 243.9
+initial_velocity_max = 243.9
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_qlg0r")
+color_ramp = SubResource("GradientTexture1D_qlg0r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yql1r"]
+shader = ExtResource("2_pyl7j")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 1.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 8.0
+shader_parameter/dither_strength = 1.0
+shader_parameter/chrom_aberration = 0.0
+shader_parameter/vignette_strength = 0.0
+shader_parameter/grain_strength = 0.0
+shader_parameter/tint_color = Vector3(1, 1, 1)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ia1n6"]
+shader = ExtResource("3_b3w7a")
+shader_parameter/alpha = 0.595
+shader_parameter/blur = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia1n6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 2
+border_color = Color(0.31, 0.6665, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiwto"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.31, 0.6665, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yql1r"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.168627, 0.6, 1, 1)
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4rr2b")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+modulate = Color(0, 0.274167, 0.47, 1)
+z_index = -5
+offset_left = -845.0
+offset_top = -275.0
+offset_right = 2034.0
+offset_bottom = 984.0
+texture = ExtResource("1_4ignj")
+expand_mode = 1
+
+[node name="ColorRect2" type="GPUParticles2D" parent="."]
+z_index = -5
+position = Vector2(-87, 306)
+amount = 50
+texture = SubResource("GradientTexture2D_wosw1")
+lifetime = 1.5
+preprocess = 5.0
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
+process_material = SubResource("ParticleProcessMaterial_hiwto")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -469.0
+offset_top = -187.0
+offset_right = 469.0
+offset_bottom = -81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.17, 0.598833, 1, 1)
+theme_override_fonts/font = ExtResource("7_yql1r")
+theme_override_font_sizes/font_size = 120
+text = "Just One Ship"
+
+[node name="ship" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.85098, 1, 1)
+position = Vector2(62, 184)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_b3w7a")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ship"]
+self_modulate = Color(0, 0.85098, 1, 1)
+material = SubResource("CanvasItemMaterial_4rr2b")
+position = Vector2(24.9998, 6)
+scale = Vector2(2, 2)
+amount = 20
+texture = SubResource("GradientTexture2D_yql1r")
+lifetime = 0.5
+speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_w65of")
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="motionblur2" type="ColorRect" parent="hud"]
+visible = false
+material = SubResource("ShaderMaterial_yql1r")
+offset_right = 1195.0
+offset_bottom = 680.0
+mouse_filter = 2
+
+[node name="motionblur" type="ColorRect" parent="hud"]
+material = SubResource("ShaderMaterial_ia1n6")
+offset_right = 1195.0
+offset_bottom = 680.0
+mouse_filter = 2
+script = ExtResource("4_4rr2b")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = 19.0
+offset_right = 156.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(156, 23)
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.168627, 0.6, 1, 1)
+theme_override_colors/font_color = Color(0.068, 0.472033, 0.85, 1)
+theme_override_colors/font_pressed_color = Color(0.168627, 0.6, 1, 1)
+theme_override_fonts/font = ExtResource("7_yql1r")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_ia1n6")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hiwto")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hiwto")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yql1r")
+text = "Play"
+script = ExtResource("8_ia1n6")

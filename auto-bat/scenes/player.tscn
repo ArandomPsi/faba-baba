@@ -11,11 +11,11 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qhqgy"]
 blend_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_g2els"]
+[sub_resource type="Gradient" id="Gradient_fjrip"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qhqgy"]
-gradient = SubResource("Gradient_g2els")
+gradient = SubResource("Gradient_fjrip")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9, 0.2)
@@ -24,14 +24,14 @@ metadata/_snap_enabled = true
 [sub_resource type="Gradient" id="Gradient_dqkch"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qlg0r"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_smehm"]
 gradient = SubResource("Gradient_dqkch")
 
 [sub_resource type="Curve" id="Curve_dqkch"]
 _data = [Vector2(0, 0.272179), 0.0, 0.0, 0, 0, Vector2(0.0867347, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.559575), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_qlg0r"]
+[sub_resource type="CurveTexture" id="CurveTexture_ur7pv"]
 curve = SubResource("Curve_dqkch")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tuyoq"]
@@ -42,8 +42,8 @@ initial_velocity_max = 243.9
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_qlg0r")
-color_ramp = SubResource("GradientTexture1D_qlg0r")
+scale_curve = SubResource("CurveTexture_ur7pv")
+color_ramp = SubResource("GradientTexture1D_smehm")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 

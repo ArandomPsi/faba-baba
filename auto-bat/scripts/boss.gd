@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	print(str(Engine.get_frames_per_second()))
+	
 	$hud/ProgressBar.value = hp
 	
 	#for collisions only
@@ -77,3 +77,15 @@ func bulletwave():
 			b.rotation += 10 * PI/20 + (PI/20 * i * 10) + (PI * randf_range(-0.5,0.5))
 		
 		await get_tree().create_timer(0.2).timeout
+
+func bulletvolley():
+	print("yo")
+	for i in range(5):
+		for e in range(20):
+			var b = preload("res://scenes/volley.tscn").instantiate()
+			get_tree().current_scene.add_child(b)
+			b.position = $body/head/charge.global_position
+			b.look_at(target.position)
+			
+		
+		await get_tree().create_timer(0.3).timeout
