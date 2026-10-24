@@ -27,7 +27,6 @@ color_ramp = SubResource("GradientTexture1D_pmmwp")
 radius = 33.9559
 
 [node name="hollowpurple" type="Node2D"]
-position = Vector2(303, 180)
 script = ExtResource("1_vrsi8")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

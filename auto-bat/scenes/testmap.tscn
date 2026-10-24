@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://3eg18hoap3vu"]
+[gd_scene load_steps=16 format=3 uid="uid://3eg18hoap3vu"]
 
+[ext_resource type="Texture2D" uid="uid://dpwpwh0568vci" path="res://assets/vfx/back-2.svg" id="1_g8l4j"]
 [ext_resource type="PackedScene" uid="uid://d0qcg2ghe50w1" path="res://scenes/boss.tscn" id="1_kwcxs"]
 [ext_resource type="Shader" uid="uid://cgfautw2yuukk" path="res://assets/vfx/motionblur.gdshader" id="2_5wgtu"]
 [ext_resource type="Script" uid="uid://bnefweim82gb0" path="res://assets/vfx/motionblur.gd" id="3_efggw"]
 [ext_resource type="PackedScene" uid="uid://dccbuhp4n7bku" path="res://scenes/player.tscn" id="4_efggw"]
+[ext_resource type="Shader" uid="uid://duhsptdwbqwk1" path="res://assets/vfx/pixel.gdshader" id="5_6fk1w"]
 
 [sub_resource type="Gradient" id="Gradient_6fk1w"]
 offsets = PackedFloat32Array(0.0716846, 0.34767)
@@ -39,6 +41,23 @@ color_ramp = SubResource("GradientTexture1D_g8l4j")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwcxs"]
 size = Vector2(1185, 20)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s36se"]
+shader = ExtResource("5_6fk1w")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 1.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 8.0
+shader_parameter/dither_strength = 1.0
+shader_parameter/chrom_aberration = 0.0
+shader_parameter/vignette_strength = 0.0
+shader_parameter/grain_strength = 0.0
+shader_parameter/tint_color = Vector3(1, 1, 1)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g8l4j"]
 shader = ExtResource("2_5wgtu")
 shader_parameter/alpha = 0.595
@@ -54,13 +73,15 @@ glow_blend_mode = 1
 
 [node name="testmap" type="Node2D"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
+modulate = Color(0, 0.274167, 0.47, 1)
 z_index = -5
 offset_left = -845.0
 offset_top = -275.0
 offset_right = 2034.0
 offset_bottom = 984.0
-color = Color(0, 0, 0, 1)
+texture = ExtResource("1_g8l4j")
+expand_mode = 1
 
 [node name="ColorRect2" type="GPUParticles2D" parent="."]
 z_index = -5
@@ -74,6 +95,10 @@ process_material = SubResource("ParticleProcessMaterial_6fk1w")
 [node name="boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_kwcxs")]
 position = Vector2(182, 297)
 target = NodePath("../player")
+
+[node name="player" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("4_efggw")]
+position = Vector2(851, 344)
+enemy = NodePath("../boss")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -97,16 +122,19 @@ shape = SubResource("RectangleShape2D_kwcxs")
 
 [node name="hud" type="CanvasLayer" parent="."]
 
-[node name="motionblur" type="ColorRect" parent="hud"]
+[node name="motionblur2" type="ColorRect" parent="hud"]
 visible = false
+material = SubResource("ShaderMaterial_s36se")
+offset_right = 1195.0
+offset_bottom = 680.0
+mouse_filter = 2
+
+[node name="motionblur" type="ColorRect" parent="hud"]
 material = SubResource("ShaderMaterial_g8l4j")
 offset_right = 1195.0
 offset_bottom = 680.0
 mouse_filter = 2
 script = ExtResource("3_efggw")
-
-[node name="player" parent="." instance=ExtResource("4_efggw")]
-position = Vector2(851, 344)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_efggw")

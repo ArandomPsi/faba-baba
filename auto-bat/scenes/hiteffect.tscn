@@ -14,15 +14,17 @@ particle_flag_disable_z = true
 angle_min = -720.0
 angle_max = 720.0
 gravity = Vector3(0, 0, 0)
-scale_max = 2.0
-color = Color(1, 0.41, 0.518167, 1)
+scale_min = 2.0
+scale_max = 3.5
 color_ramp = SubResource("GradientTexture1D_cffip")
 
 [node name="hiteffect" type="GPUParticles2D"]
+modulate = Color(1, 0.411765, 0.517647, 1)
 emitting = false
 amount = 1
 texture = ExtResource("1_dn5ww")
 lifetime = 0.1
 one_shot = true
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_48fvs")
 script = ExtResource("2_oyglf")
