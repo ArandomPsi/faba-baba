@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxda85w677qnx"]
+[gd_scene load_steps=8 format=3 uid="uid://bxda85w677qnx"]
 
 [ext_resource type="Texture2D" uid="uid://b8kehws6ignpi" path="res://assets/vfx/revspin.svg" id="1_85uu6"]
 [ext_resource type="Script" uid="uid://drf45ccshnxwf" path="res://scripts/hollowpurple.gd" id="1_vrsi8"]
@@ -23,7 +23,11 @@ scale_max = 2.0
 color = Color(1, 0, 0.566667, 1)
 color_ramp = SubResource("GradientTexture1D_pmmwp")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vrsi8"]
+radius = 33.9559
+
 [node name="hollowpurple" type="Node2D"]
+position = Vector2(303, 180)
 script = ExtResource("1_vrsi8")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
@@ -36,3 +40,10 @@ fixed_fps = 60
 visibility_rect = Rect2(-2000, -2000, 4000, 4000)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_26ukg")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vrsi8")

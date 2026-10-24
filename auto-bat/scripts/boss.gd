@@ -13,6 +13,7 @@ func _process(delta: float) -> void:
 	if not $AnimationPlayer.is_playing():
 		var anims : Array = $AnimationPlayer.get_animation_list() #maybe cache this
 		$AnimationPlayer.play(anims.pick_random())
+		#testing: $AnimationPlayer.play("attack2")
 	
 
 func attack1():
