@@ -2,6 +2,7 @@ extends Control
 
 var ogshippos : Vector2
 var scoreboard_in : bool = false
+var tutorial_in : bool = false
 
 @onready var simpleboards = $SimpleBoardsApi
 
@@ -100,3 +101,9 @@ func _on_button_2_pressed() -> void:
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/testmap.tscn")
+
+
+func _on_button_3_pressed() -> void:
+	var tween = create_tween()
+	tween.tween_property($tutorial,"position", Vector2(-372.0, 204.0) if tutorial_in else Vector2(10.0,204),0.5).set_trans(Tween.TRANS_CUBIC)
+	tutorial_in = !tutorial_in

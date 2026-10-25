@@ -263,9 +263,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -156.0
-offset_top = 134.0
+offset_top = 90.0
 offset_right = 156.0
-offset_bottom = 180.0
+offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(156, 23)
@@ -290,9 +290,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -156.0
-offset_top = 201.0
+offset_top = 224.0
 offset_right = 156.0
-offset_bottom = 247.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(156, 23)
@@ -307,6 +307,33 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hiwto")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hiwto")
 theme_override_styles/normal = SubResource("StyleBoxFlat_yql1r")
 text = "Scoreboard"
+script = ExtResource("8_ia1n6")
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = 157.0
+offset_right = 156.0
+offset_bottom = 203.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(156, 23)
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.168627, 0.6, 1, 1)
+theme_override_colors/font_color = Color(0.068, 0.472033, 0.85, 1)
+theme_override_colors/font_pressed_color = Color(0.168627, 0.6, 1, 1)
+theme_override_fonts/font = ExtResource("7_yql1r")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_ia1n6")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_hiwto")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hiwto")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yql1r")
+text = "Tutorial"
 script = ExtResource("8_ia1n6")
 
 [node name="scoreboard" type="Panel" parent="."]
@@ -364,6 +391,62 @@ theme_override_font_sizes/normal_font_size = 15
 text = "1: Joe mama - 500
 2:"
 
+[node name="tutorial" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -948.0
+offset_top = -444.0
+offset_right = -609.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w65of")
+
+[node name="blur" type="Panel" parent="tutorial"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_ygloa")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ygloa")
+
+[node name="Label" type="Label" parent="tutorial"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.5
+offset_top = 13.0
+offset_right = 25.5
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.309804, 0.666667, 1, 1)
+theme_override_fonts/font = ExtResource("7_yql1r")
+theme_override_font_sizes/font_size = 20
+text = "Tutorial"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="tutorial"]
+modulate = Color(0.309804, 0.666667, 1, 1)
+layout_mode = 0
+offset_left = 17.0
+offset_top = 38.0
+offset_right = 321.0
+offset_bottom = 418.0
+theme_override_fonts/normal_font = ExtResource("7_yql1r")
+theme_override_font_sizes/normal_font_size = 15
+text = "WASD TO MOVE
+SPACE TO SHOOT
+Q TO GO TO MENU"
+
 [node name="SimpleBoardsApi" type="Node" parent="."]
 script = ExtResource("9_hiwto")
 api_key = "7499c2ec-05a7-4f87-8cc0-e90f6cc0baae"
@@ -409,3 +492,4 @@ autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
