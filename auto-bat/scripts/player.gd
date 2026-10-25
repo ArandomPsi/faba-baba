@@ -31,8 +31,8 @@ func _ready() -> void:
 
 func restart():
 	
-	highscore = clampi(roundi((1.0 - enemy.hp / 2000.0) * 100.0), 0, 100)
 	
+	highscore_check()
 	
 	enemy.hp = 2000
 	position = Vector2(851.0,344)
@@ -44,10 +44,14 @@ func restart():
 	$hp.max_value = hp
 	
 	
-	if highscore > global.transferscore:
-		global.transferscore = highscore
-		await simpleboards.send_score_without_id("533cfd29-3759-446d-24b1-08df32091af1",global.playername,str(global.transferscore),"{}")
 	
+func highscore_check():
+	highscore = clampi(roundi((1.0 - enemy.hp / 2000.0) * 100.0), 0, 100)
+	if highscore > global.highscore:
+		global.highscore = highscore
+		global.transferscore = global.highscore
+		await simpleboards.send_score_without_id("533cfd29-3759-446d-24b1-08df32091af1",global.playername,str(global.transferscore),"{}")
+
 
 func _process(delta: float) -> void:
 	if hp > 0:
@@ -85,6 +89,8 @@ func shoot():
 			b.position = position
 			b.rotation = $pivot.rotation + PI
 			b.rotation_degrees += 3 * (stage - i) - (3* stage/2)
+	$lasershoot.pitch_scale = randf_range(0.7, 1.4)
+	$lasershoot.play()
 
 func fling(enemy_attack):
 	var b = preload("res://scenes/hiteffect.tscn").instantiate()
@@ -117,7 +123,10 @@ func deadcutscene():
 	tween.tween_property($hud/Label,"modulate:a",1.0,0.8)
 	tween.tween_method(labelshine,0.0,1.0,0.05)
 	tween.tween_property($hud/Label,"modulate:a",0.0,0.8)
+	$hit.volume_db = -80.0
+	$boom.play()
 	await tween.finished
+	$hit.volume_db = 0.0
 	alreadydead = false
 	Engine.time_scale = 1.0
 	restart()
@@ -133,5 +142,11 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		for i in range(3):
 			var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 			tween.tween_property($pivot/Sprite2D, "self_modulate", Color.WHITE, 0.15)
+			$hit.play()
 			tween.tween_property($pivot/Sprite2D, "self_modulate", Color("#00d9ff"), 0.15)
 			await tween.finished
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("menu"):
+		highscore_check()
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/title.tscn")

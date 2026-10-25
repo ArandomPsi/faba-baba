@@ -5,6 +5,9 @@ func _process(delta: float) -> void:
 	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	var sfx = body.get_node("hit")
+	sfx.pitch_scale = randf_range(0.7, 1.4)
+	sfx.play()
 	var b = preload("res://scenes/hiteffect.tscn").instantiate()
 	get_tree().current_scene.add_child(b)
 	if "hp" in body:

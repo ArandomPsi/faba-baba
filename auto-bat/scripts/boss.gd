@@ -29,6 +29,9 @@ func _process(delta: float) -> void:
 		$AnimationPlayer.play(anims.pick_random())
 		#testing: $AnimationPlayer.play("attack2")
 	
+	if hp <= 0:
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/title.tscn")
+	
 
 func attack1():
 	for i in range(15):

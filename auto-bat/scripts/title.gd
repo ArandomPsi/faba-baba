@@ -1,11 +1,14 @@
 extends Control
 
 var ogshippos : Vector2
+var scoreboard_in : bool = false
 
 @onready var simpleboards = $SimpleBoardsApi
 
 func _ready() -> void:
 	ogshippos = $ship.position
+	
+	Save.load_game()
 	
 	#annoying popup
 	if global.playername == "":
@@ -15,6 +18,10 @@ func _ready() -> void:
 			$entername.visible = false
 			global.playername = $entername.text
 			$entername.release_focus()
+	
+	Save.save_game()
+	
+	$Label2.text = "Driven By " + global.playername
 	
 	print(str(global.playername))
 	 
@@ -60,9 +67,15 @@ func test():
 func _on_entries_got(entries):
 	var label = $scoreboard/RichTextLabel
 	label.clear()
-
 	for i in range(entries.size()):
 		var entry = entries[i]
+		print({"name": entry["playerDisplayName"], "score": entry["score"]})
+	entries = remove_duplicate_names(entries)
+	entries.sort_custom(func(a, b): return float(a["score"]) > float(b["score"]))
+	
+	for i in range(entries.size()):
+		var entry = entries[i]
+		print({"name": entry["playerDisplayName"], "score": entry["score"]})
 		label.append_text(str(i + 1) + ": " +str(entry["playerDisplayName"]) + " - " +str(entry["score"]) + "%\n")
 
 func _on_entry_sent(entry):
@@ -72,11 +85,21 @@ func _on_entry_sent(entry):
 func _on_request_failed(response_code, body):
 	push_warning("SimpleBoards request failed: %s - %s" % [response_code, body])
 
+func remove_duplicate_names(entries : Array):
+	var best_scores = {}
+	for entry in entries:
+		var player_name = entry["playerDisplayName"]
+
+		if not best_scores.has(player_name):
+			best_scores[player_name] = entry
+		elif float(entry["score"]) > float(best_scores[player_name]["score"]):
+			best_scores[player_name] = entry
+	return best_scores.values()
 
 func _on_button_2_pressed() -> void:
 	var tween = create_tween()
-	tween.tween_property($scoreboard,"position",Vector2(803.0,204),0.5).set_trans(Tween.TRANS_CUBIC)
-
+	tween.tween_property($scoreboard,"position", Vector2(1174.0, 204.0) if scoreboard_in else Vector2(803.0,204),0.5).set_trans(Tween.TRANS_CUBIC)
+	scoreboard_in = !scoreboard_in
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/testmap.tscn")

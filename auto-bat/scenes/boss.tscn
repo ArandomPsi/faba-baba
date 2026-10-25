@@ -1,10 +1,11 @@
-[gd_scene load_steps=43 format=3 uid="uid://d0qcg2ghe50w1"]
+[gd_scene load_steps=44 format=3 uid="uid://d0qcg2ghe50w1"]
 
 [ext_resource type="Texture2D" uid="uid://dqfuh5bbn2hx4" path="res://assets/body-3.svg" id="1_jncid"]
 [ext_resource type="Script" uid="uid://cgchg7ws4vqfw" path="res://scripts/boss.gd" id="1_r3bxh"]
 [ext_resource type="Texture2D" uid="uid://cd1t51reaee7a" path="res://assets/head-3.svg" id="2_qnbj4"]
 [ext_resource type="Texture2D" uid="uid://wbanfgin5pko" path="res://assets/vfx/light-2.svg" id="3_qnbj4"]
 [ext_resource type="Texture2D" uid="uid://wt7o2u3ujt8x" path="res://assets/arm.svg" id="3_r3bxh"]
+[ext_resource type="AudioStream" uid="uid://b2uilb3sao2dp" path="res://assets/osu-hit-sound.mp3" id="6_wqpjq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r3bxh"]
 blend_mode = 1
@@ -765,3 +766,7 @@ theme_override_constants/outline_size = 10
 text = "-Dragwan de Taiwan-"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_wqpjq")
+volume_db = 14.25
