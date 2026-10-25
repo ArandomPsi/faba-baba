@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bbifm7ieaxq0t"]
+[gd_scene load_steps=33 format=3 uid="uid://bbifm7ieaxq0t"]
 
 [ext_resource type="Texture2D" uid="uid://dpwpwh0568vci" path="res://assets/vfx/back-2.svg" id="1_4ignj"]
 [ext_resource type="Script" uid="uid://dfinawce37lsu" path="res://scripts/title.gd" id="1_4rr2b"]
@@ -135,7 +135,18 @@ border_color = Color(0.31, 0.6665, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ygloa"]
 shader = ExtResource("9_w65of")
-shader_parameter/blur_lod = 2.765
+shader_parameter/blur_lod = 3.85
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygloa"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6civk"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [node name="title" type="Control"]
 layout_mode = 3
@@ -149,6 +160,7 @@ script = ExtResource("1_4rr2b")
 [node name="ColorRect" type="TextureRect" parent="."]
 modulate = Color(0, 0.274167, 0.47, 1)
 z_index = -5
+layout_mode = 0
 offset_left = -845.0
 offset_top = -275.0
 offset_right = 2034.0
@@ -174,9 +186,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -469.0
-offset_top = -187.0
+offset_top = -265.0
 offset_right = 469.0
-offset_bottom = -81.0
+offset_bottom = -159.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.17, 0.598833, 1, 1)
@@ -186,7 +198,7 @@ text = "Just One Ship"
 
 [node name="ship" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0.85098, 1, 1)
-position = Vector2(62, 184)
+position = Vector2(62, 106)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_b3w7a")
 
@@ -226,9 +238,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -156.0
-offset_top = 19.0
+offset_top = 134.0
 offset_right = 156.0
-offset_bottom = 65.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(156, 23)
@@ -253,9 +265,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -156.0
-offset_top = 101.0
+offset_top = 201.0
 offset_right = 156.0
-offset_bottom = 147.0
+offset_bottom = 247.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(156, 23)
@@ -274,17 +286,17 @@ script = ExtResource("8_ia1n6")
 
 [node name="scoreboard" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -218.0
-offset_top = -274.0
-offset_right = 218.0
-offset_bottom = 274.0
+anchor_bottom = 1.0
+offset_left = 598.0
+offset_top = -444.0
+offset_right = 937.0
+offset_bottom = -13.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_w65of")
 
 [node name="blur" type="Panel" parent="scoreboard"]
@@ -296,6 +308,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ygloa")
 
 [node name="Label" type="Label" parent="scoreboard"]
 layout_mode = 1
@@ -309,20 +322,20 @@ offset_bottom = 36.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.309804, 0.666667, 1, 1)
 theme_override_fonts/font = ExtResource("7_yql1r")
-theme_override_font_sizes/font_size = 34
-text = "Scores"
+theme_override_font_sizes/font_size = 20
+text = "Top Completions"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="scoreboard"]
 modulate = Color(0.309804, 0.666667, 1, 1)
 layout_mode = 0
-offset_left = 5.0
-offset_top = 61.0
-offset_right = 428.0
-offset_bottom = 544.0
+offset_left = 17.0
+offset_top = 38.0
+offset_right = 321.0
+offset_bottom = 418.0
 theme_override_fonts/normal_font = ExtResource("7_yql1r")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 15
 text = "1: Joe mama - 500
 2:"
 
@@ -330,3 +343,39 @@ text = "1: Joe mama - 500
 script = ExtResource("9_hiwto")
 api_key = "7499c2ec-05a7-4f87-8cc0-e90f6cc0baae"
 metadata/_custom_type_script = "uid://cbwgqa5bydk6f"
+
+[node name="entername" type="LineEdit" parent="."]
+visible = false
+modulate = Color(0.309804, 0.666667, 1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -19.0
+offset_right = 257.0
+offset_bottom = 285.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_yql1r")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_6civk")
+placeholder_text = "Enter name"
+alignment = 1
+
+[node name="blur2" type="Panel" parent="entername"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_ygloa")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ygloa")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

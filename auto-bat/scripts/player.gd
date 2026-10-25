@@ -8,19 +8,46 @@ var stage : int = 0
 var hp : int = 5
 
 @export var enemy : Node2D
+@export var attemptthingy : Label
+
+@onready var simpleboards = $SimpleBoardsApi
+
+var highscore : float = 0
 
 var alreadydead : bool = false
 
+var attempts : int = 0
+
+
 func _ready() -> void:
 	restart()
+	
+	# Set the API key (from your SimpleBoards dashboard)
+	simpleboards.set_api_key("7499c2ec-05a7-4f87-8cc0-e90f6cc0baae")
+
+	
+	
+	
 
 func restart():
+	
+	highscore = clampi(roundi((1.0 - enemy.hp / 2000.0) * 100.0), 0, 100)
+	
+	
 	enemy.hp = 2000
 	position = Vector2(851.0,344)
-	stage += 1
-	hp = 5 + (2 * (stage-1)) #two more hp every stage
-	
+	stage = 1
+	hp = 10 + (2 * (stage-1)) #two more hp every stage
+	attempts += 1
+	attemptthingy.text = "attempts - " + str(attempts)
+	attemptthingy.newattempt()
 	$hp.max_value = hp
+	
+	
+	if highscore > global.transferscore:
+		global.transferscore = highscore
+		await simpleboards.send_score_without_id("533cfd29-3759-446d-24b1-08df32091af1",global.playername,str(global.transferscore),"{}")
+	
 
 func _process(delta: float) -> void:
 	if hp > 0:
@@ -98,7 +125,7 @@ func deadcutscene():
 func labelshine(va):
 	$Camera2D.camerashake = 10
 	$hud/Label/quickshine.emitting = true
-	$hud/Label.text = str(stage + 1)
+	$hud/Label.text = str(attempts + 1)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if hp > 0:

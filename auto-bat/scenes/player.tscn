@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dccbuhp4n7bku"]
+[gd_scene load_steps=24 format=3 uid="uid://dccbuhp4n7bku"]
 
 [ext_resource type="Script" uid="uid://bcev3u2iioldd" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://6gofakpamjbc" path="res://assets/spaceship.svg" id="2_qhqgy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bk2hsburloif5" path="res://assets/vfx/player.svg" id="5_tuyoq"]
 [ext_resource type="FontFile" uid="uid://b02cyc7ajhgen" path="res://assets/vfx/QueensidesMedium-x30zV.ttf" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://dg8o5w11ywtsf" path="res://assets/vfx/iaislash.svg" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://cbwgqa5bydk6f" path="res://addons/simpleboards_plugin/SimpleBoardsApi.gd" id="8_smehm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qhqgy"]
 blend_mode = 1
@@ -161,5 +162,10 @@ one_shot = true
 speed_scale = 10.0
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_3v2ag")
+
+[node name="SimpleBoardsApi" type="Node" parent="."]
+script = ExtResource("8_smehm")
+api_key = "7499c2ec-05a7-4f87-8cc0-e90f6cc0baae"
+metadata/_custom_type_script = "uid://cbwgqa5bydk6f"
 
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

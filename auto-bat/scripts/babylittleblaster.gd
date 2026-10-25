@@ -8,7 +8,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	var b = preload("res://scenes/hiteffect.tscn").instantiate()
 	get_tree().current_scene.add_child(b)
 	if "hp" in body:
-		body.hp -= 1
+		body.hp -= 2
 	b.position = position
 	b.scale *= 0.4
 	b.modulate = Color("70d4ff")

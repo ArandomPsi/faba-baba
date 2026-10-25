@@ -1,8 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://3eg18hoap3vu"]
+[gd_scene load_steps=18 format=3 uid="uid://3eg18hoap3vu"]
 
 [ext_resource type="Texture2D" uid="uid://dpwpwh0568vci" path="res://assets/vfx/back-2.svg" id="1_g8l4j"]
 [ext_resource type="PackedScene" uid="uid://d0qcg2ghe50w1" path="res://scenes/boss.tscn" id="1_kwcxs"]
 [ext_resource type="Shader" uid="uid://cgfautw2yuukk" path="res://assets/vfx/motionblur.gdshader" id="2_5wgtu"]
+[ext_resource type="FontFile" uid="uid://cnoopnyav4dsv" path="res://assets/vfx/Aquire-BW0ox.otf" id="2_s36se"]
+[ext_resource type="Script" uid="uid://du8xinhkafv33" path="res://scripts/attemptcounter.gd" id="3_8qn3e"]
 [ext_resource type="Script" uid="uid://bnefweim82gb0" path="res://assets/vfx/motionblur.gd" id="3_efggw"]
 [ext_resource type="PackedScene" uid="uid://dccbuhp4n7bku" path="res://scenes/player.tscn" id="4_efggw"]
 [ext_resource type="Shader" uid="uid://duhsptdwbqwk1" path="res://assets/vfx/pixel.gdshader" id="5_6fk1w"]
@@ -93,13 +95,25 @@ preprocess = 5.0
 visibility_rect = Rect2(-2000, -2000, 4000, 4000)
 process_material = SubResource("ParticleProcessMaterial_6fk1w")
 
+[node name="attemptcounter" type="Label" parent="."]
+offset_left = 131.0
+offset_top = 296.0
+offset_right = 537.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0, 0.316667, 1, 0.188235)
+theme_override_fonts/font = ExtResource("2_s36se")
+theme_override_font_sizes/font_size = 60
+text = "attempt 1"
+script = ExtResource("3_8qn3e")
+
 [node name="boss" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_kwcxs")]
 position = Vector2(182, 297)
 target = NodePath("../player")
 
-[node name="player" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("4_efggw")]
+[node name="player" parent="." node_paths=PackedStringArray("enemy", "attemptthingy") instance=ExtResource("4_efggw")]
 position = Vector2(851, 344)
 enemy = NodePath("../boss")
+attemptthingy = NodePath("../attemptcounter")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
