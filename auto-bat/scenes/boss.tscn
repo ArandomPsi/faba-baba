@@ -1,10 +1,11 @@
-[gd_scene load_steps=44 format=3 uid="uid://d0qcg2ghe50w1"]
+[gd_scene load_steps=45 format=3 uid="uid://d0qcg2ghe50w1"]
 
 [ext_resource type="Texture2D" uid="uid://dqfuh5bbn2hx4" path="res://assets/body-3.svg" id="1_jncid"]
 [ext_resource type="Script" uid="uid://cgchg7ws4vqfw" path="res://scripts/boss.gd" id="1_r3bxh"]
 [ext_resource type="Texture2D" uid="uid://cd1t51reaee7a" path="res://assets/head-3.svg" id="2_qnbj4"]
 [ext_resource type="Texture2D" uid="uid://wbanfgin5pko" path="res://assets/vfx/light-2.svg" id="3_qnbj4"]
 [ext_resource type="Texture2D" uid="uid://wt7o2u3ujt8x" path="res://assets/arm.svg" id="3_r3bxh"]
+[ext_resource type="FontFile" uid="uid://diabqx6et1qvj" path="res://assets/vfx/AquireBold-8Ma60.otf" id="6_2cdgk"]
 [ext_resource type="AudioStream" uid="uid://b2uilb3sao2dp" path="res://assets/osu-hit-sound.mp3" id="6_wqpjq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_r3bxh"]
@@ -623,13 +624,17 @@ size = Vector2(82, 832.043)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3bxh"]
 bg_color = Color(0.17, 0, 0.1105, 1)
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqpjq"]
 bg_color = Color(1, 0, 0.433333, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [node name="boss" type="CharacterBody2D"]
 collision_layer = 12
@@ -741,9 +746,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -336.0
-offset_top = 36.0
+offset_top = 41.0
 offset_right = 336.0
-offset_bottom = 49.0
+offset_bottom = 44.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_r3bxh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_wqpjq")
@@ -756,17 +761,19 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -116.0
-offset_top = 9.0
+offset_top = 31.0
 offset_right = 116.0
-offset_bottom = 32.0
+offset_bottom = 54.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.00392157, 0.435294, 1)
 theme_override_colors/font_outline_color = Color(0.172549, 0.00392157, 0.109804, 1)
-theme_override_constants/outline_size = 10
-text = "-Dragwan de Taiwan-"
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_2cdgk")
+theme_override_font_sizes/font_size = 24
+text = "Just A Dragon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="hit" type="AudioStreamPlayer" parent="."]
+[node name="hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_wqpjq")
-volume_db = 14.25
+bus = &"New Bus"

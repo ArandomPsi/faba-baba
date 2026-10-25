@@ -1,15 +1,15 @@
-[gd_scene load_steps=35 format=3 uid="uid://bbifm7ieaxq0t"]
+[gd_scene load_steps=36 format=3 uid="uid://bbifm7ieaxq0t"]
 
 [ext_resource type="Texture2D" uid="uid://dpwpwh0568vci" path="res://assets/vfx/back-2.svg" id="1_4ignj"]
 [ext_resource type="Script" uid="uid://dfinawce37lsu" path="res://scripts/title.gd" id="1_4rr2b"]
-[ext_resource type="Shader" path="res://assets/vfx/pixel.gdshader" id="2_pyl7j"]
+[ext_resource type="Shader" uid="uid://duhsptdwbqwk1" path="res://assets/vfx/pixel.gdshader" id="2_pyl7j"]
 [ext_resource type="Shader" uid="uid://cgfautw2yuukk" path="res://assets/vfx/motionblur.gdshader" id="3_b3w7a"]
 [ext_resource type="Script" uid="uid://bnefweim82gb0" path="res://assets/vfx/motionblur.gd" id="4_4rr2b"]
 [ext_resource type="Texture2D" uid="uid://6gofakpamjbc" path="res://assets/spaceship.svg" id="5_b3w7a"]
 [ext_resource type="FontFile" uid="uid://cnoopnyav4dsv" path="res://assets/vfx/Aquire-BW0ox.otf" id="7_yql1r"]
-[ext_resource type="Script" path="res://scripts/button.gd" id="8_ia1n6"]
+[ext_resource type="Script" uid="uid://b7iqxw53xbi4" path="res://scripts/button.gd" id="8_ia1n6"]
 [ext_resource type="Script" uid="uid://cbwgqa5bydk6f" path="res://addons/simpleboards_plugin/SimpleBoardsApi.gd" id="9_hiwto"]
-[ext_resource type="Shader" path="res://assets/vfx/blurfromoldgame.gdshader" id="9_w65of"]
+[ext_resource type="Shader" uid="uid://ds55wwtjahacj" path="res://assets/vfx/blurfromoldgame.gdshader" id="9_w65of"]
 [ext_resource type="AudioStream" uid="uid://jb4piml6y3iv" path="res://assets/nightdancerver (1).ogg" id="11_ygloa"]
 
 [sub_resource type="Gradient" id="Gradient_6fk1w"]
@@ -152,6 +152,12 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="Environment" id="Environment_ygloa"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 4.74
+glow_bloom = 0.22
+
 [node name="title" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -202,6 +208,7 @@ theme_override_font_sizes/font_size = 120
 text = "Just One Ship"
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 material = SubResource("CanvasItemMaterial_ygloa")
 layout_mode = 1
 anchors_preset = 8
@@ -443,7 +450,7 @@ offset_right = 321.0
 offset_bottom = 418.0
 theme_override_fonts/normal_font = ExtResource("7_yql1r")
 theme_override_font_sizes/normal_font_size = 15
-text = "WASD TO MOVE
+text = "Arrow keys TO MOVE
 SPACE TO SHOOT
 Q TO GO TO MENU"
 
@@ -488,7 +495,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ygloa")
 
 [node name="bgmusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_ygloa")
+volume_db = -10.0
 autoplay = true
+mix_target = 1
+bus = &"New Bus"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ygloa")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

@@ -140,10 +140,11 @@ func labelshine(va):
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if hp > 0:
 		fling(area.get_parent())
+		$hit.play()
 		for i in range(3):
 			var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 			tween.tween_property($pivot/Sprite2D, "self_modulate", Color.WHITE, 0.15)
-			$hit.play()
+			
 			tween.tween_property($pivot/Sprite2D, "self_modulate", Color("#00d9ff"), 0.15)
 			await tween.finished
 

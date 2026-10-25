@@ -73,8 +73,8 @@ func _on_entries_got(entries):
 	
 	for i in range(entries.size()):
 		var entry = entries[i]
-		print({"name": entry["playerDisplayName"], "score": entry["score"]})
-		label.append_text(str(i + 1) + ": " +str(entry["playerDisplayName"]) + " - " +str(entry["score"]) + "%\n")
+		
+		label.append_text(str(i + 1) + "   " +str(entry["playerDisplayName"]) + " - " +str(entry["score"]) + "%\n")
 
 func _on_entry_sent(entry):
 	print("Score submitted: ", entry)

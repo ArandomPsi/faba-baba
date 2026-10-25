@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="auto bat"
+run/main_scene="uid://bbifm7ieaxq0t"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 config/icon="res://assets/icon.svg"
@@ -71,3 +72,9 @@ menu={
 2d_physics/layer_2="player"
 2d_physics/layer_3="boss"
 2d_physics/layer_4="enemy attack"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+viewport/hdr_2d=true
