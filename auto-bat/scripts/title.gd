@@ -67,9 +67,6 @@ func test():
 func _on_entries_got(entries):
 	var label = $scoreboard/RichTextLabel
 	label.clear()
-	for i in range(entries.size()):
-		var entry = entries[i]
-		print({"name": entry["playerDisplayName"], "score": entry["score"]})
 	entries = remove_duplicate_names(entries)
 	entries.sort_custom(func(a, b): return float(a["score"]) > float(b["score"]))
 	

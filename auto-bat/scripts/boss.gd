@@ -30,6 +30,7 @@ func _process(delta: float) -> void:
 		#testing: $AnimationPlayer.play("attack2")
 	
 	if hp <= 0:
+		global.player.highscore_check()
 		get_tree().call_deferred("change_scene_to_file", "res://scenes/title.tscn")
 	
 

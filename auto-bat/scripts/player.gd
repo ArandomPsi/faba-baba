@@ -20,6 +20,7 @@ var attempts : int = 0
 
 
 func _ready() -> void:
+	global.player = self
 	restart()
 	
 	# Set the API key (from your SimpleBoards dashboard)
